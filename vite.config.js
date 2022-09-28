@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import mkcert from 'vite-plugin-mkcert'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   plugins: [
     vue(),
+    mkcert(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
@@ -27,5 +29,8 @@ export default defineConfig({
         ]
       }
     })
-  ]
+  ],
+  server: {
+    https: true
+  }
 })
