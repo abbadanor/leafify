@@ -7,20 +7,20 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['leaf.svg', 'leaf-180.png', 'masked-icon.svg'],
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'Leafify Image Detector',
         short_name: 'Leafify',
-        description: 'My Awesome App description',
+        description: 'Scan a leaf to identify the tree',
         theme_color: '#ffffff',
         icons: [
           {
-            src: 'leaf-196.png',
+            src: 'pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'leaf-512.png',
+            src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }
