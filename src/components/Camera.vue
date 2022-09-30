@@ -8,14 +8,12 @@ async function openCamera() {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: "environment",
-        height: window.screen.availWidth,
-        aspectRatio: { exact: 16 / 9 },
+        height: 480,
+        width: 720
       },
       audio: false,
     });
     const [track] = stream.getVideoTracks();
-    const capabilities = track.getCapabilities();
-    const settings = track.getSettings();
     video.value.srcObject = stream;
   } catch (error) {
     console.error(error);
@@ -28,7 +26,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <div class="">
     <video autoplay ref="video"></video>
   </div>
 </template>
