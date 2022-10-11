@@ -1,4 +1,5 @@
 <script setup>
+import CameraButton from './CameraButton.vue'
 import { ref, onMounted } from "vue";
 
 const video = ref(null);
@@ -8,16 +9,19 @@ async function openCamera() {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: "environment",
-        height: 480,
-        width: 720
+        height: window.innerWidth,
+        width: window.innerHeight,
       },
       audio: false,
     });
-    const [track] = stream.getVideoTracks();
     video.value.srcObject = stream;
   } catch (error) {
     console.error(error);
   }
+}
+
+function hej() {
+  console.log('hej')
 }
 
 onMounted(async () => {
@@ -26,7 +30,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="">
+  <div>
     <video autoplay ref="video"></video>
+    <CameraButton @clicked="hej"></CameraButton>
   </div>
 </template>
