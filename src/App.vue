@@ -2,19 +2,17 @@
 import { ref, onMounted } from "vue";
 
 const video = ref(null);
-const rect = ref(null)
 
 async function openCamera() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: "environment",
-        height: screen.width,
-        width: screen.height
+        height: 720,
+        width: 1280,
       },
       audio: false,
     });
-    const [track] = stream.getVideoTracks();
     video.value.srcObject = stream;
   } catch (error) {
     console.error(error);
@@ -27,7 +25,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-full h-full overflow-hidden">
-    <video class="h-full" autoplay ref="video"></video>
+  <div class="w-full min-h-screen">
+    <video autoplay ref="video"></video>
   </div>
 </template>
