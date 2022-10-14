@@ -1,8 +1,12 @@
 <script setup>
-import CameraButton from './CameraButton.vue'
+import CameraControls from './CameraControls.vue'
 import { ref, onMounted } from "vue";
 
 const video = ref(null);
+const canvasWidth = ref(null)
+const canvasHeight = ref(null)
+const canvas = ref(null)
+const canvasHidden = ref(true)
 
 async function openCamera() {
   try {
@@ -15,13 +19,17 @@ async function openCamera() {
       audio: false,
     });
     video.value.srcObject = stream;
+    canvas.value.width = window.innerWidth
+    canvas.value.height = window.innerHeight
   } catch (error) {
     console.error(error);
   }
 }
 
-function hej() {
-  console.log('hej')
+function takePicture() {
+  const context = canvas.value.getContext('2d');
+  context.drawImage(video.value, 0, 0, canvas.value.width, canvas.value.height);
+  canvasHidden.value = false
 }
 
 onMounted(async () => {
@@ -32,6 +40,7 @@ onMounted(async () => {
 <template>
   <div>
     <video autoplay ref="video"></video>
-    <CameraButton @clicked="hej"></CameraButton>
+    <canvas class="absolute bottom-0" ref="canvas" :width="canvasWidth" :height="canvasHeight"></canvas>
+    <CameraControls @clicked="takePicture"></CameraControls>
   </div>
 </template>
