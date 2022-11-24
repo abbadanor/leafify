@@ -20,10 +20,10 @@ export default defineConfig({
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'My Awesome App',
-        short_name: 'MyApp',
-        description: 'My Awesome App description',
-        theme_color: '#ffffff',
+        name: 'Leafify',
+        short_name: 'Leafify',
+        description: 'Detect species of leaves',
+        theme_color: '#16a34a',
         icons: [
           {
             src: 'pwa-192x192.png',
