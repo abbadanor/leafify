@@ -106,10 +106,13 @@ function fileUpload() {
         uploadStatus.value = 'loading'
 
         axios
-            .post('https://api.algnor.se/api', data, {
+            .post('/api', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Basic YXBpMTpjYXJlc3M5aGVhZCZpbnN1cmU='
+                },
+                auth: {
+                    username: 'api1',
+                    password: 'caress9head&insure',
                 },
             })
             .then(res => {
@@ -127,7 +130,7 @@ function fileUpload() {
 
 async function testAPI() {
     try {
-        const res = await axios.get('https://api.algnor.se/api', {
+        const res = await axios.get('/api', {
                 auth: {
                     username: 'api1',
                     password: 'caress9head&insure',
