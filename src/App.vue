@@ -163,21 +163,22 @@ onMounted(async () => {
         </i-mdi-close>
         <h1 class="font-semibold text-2xl mb-3">Är du nöjd med bilden?</h1>
         <img :src="dataURL" class="h-3/4 rounded-lg shrink block" />
-        <i-material-symbols-check-circle-rounded class="h-20 w-20 text-green-500 rounded-full active:text-green-600"
-            @click="testAPI">
+        <i-material-symbols-check-circle-rounded class="h-20 w-20 text-green-600 rounded-full active:text-green-600"
+            @click="fileUpload">
         </i-material-symbols-check-circle-rounded>
     </div>
     <div v-if="uploadStatus" class="min-h-screen w-full flex justify-center bg-white p-4">
-        <i-mdi-loading v-if="uploadStatus === 'loading'" class="self-center animate-spin h-16 w-16 text-green-500">
+        <i-mdi-loading v-if="uploadStatus === 'loading'" class="self-center animate-spin h-16 w-16 text-green-600">
         </i-mdi-loading>
         <div v-if="uploadStatus === 'done'" class="flex flex-col items-center">
             <h1 class="font-semibold text-3xl">{{ leaves[prediction.species].name }}</h1>
-            <p class="text-green-500 text-xl font-semibold">{{ prediction.confidence.toFixed(1) }}%</p>
+            <p class="text-green-600 text-xl font-semibold">{{ prediction.confidence.toFixed(1) }}%</p>
             <p class="text-gray-700">{{ prediction.species }}</p>
             <img class="rounded-lg" alt="" :src="leaves[prediction.species].img" />
             <p class="text-gray-700">{{ leaves[prediction.species].description }}</p>
             <br />
-            <p @click="uploadStatus = null; cameraActive = true; openCamera()" class="text-green-500 underline">Gör om
+
+            <p @click="uploadStatus = null; cameraActive = true; openCamera()" class="text-green-600 underline">Gör om
             </p>
         </div>
     </div>
