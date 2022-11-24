@@ -1,18 +1,28 @@
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
+import Vue from '@vitejs/plugin-vue'
 import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import Components from 'unplugin-vue-components/vite'
 
 export default defineConfig({
   plugins: [
-    vue(),
+    Vue(),
+    Components({
+      resolvers: [
+        IconsResolver(),
+      ],
+    }),
+    Icons(),
     VitePWA({
-      registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true
+      },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'Leafify Image Detector',
-        short_name: 'Leafify',
-        description: 'Scan a leaf to identify the tree',
+        name: 'My Awesome App',
+        short_name: 'MyApp',
+        description: 'My Awesome App description',
         theme_color: '#ffffff',
         icons: [
           {
@@ -26,11 +36,7 @@ export default defineConfig({
             type: 'image/png'
           }
         ]
-      },
-      devOptions: {
-        enabled: true
       }
-    }),
-    Icons({})
+    })
   ]
 })
